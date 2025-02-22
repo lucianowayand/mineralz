@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://ct61o5vuxnfok"]
+
+[ext_resource type="Script" path="res://node_3d.gd" id="1_5ww7e"]
+[ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://mesh.tres" id="1_kumd7"]
+[ext_resource type="Script" path="res://grid_map.gd" id="2_gqqed"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="3_fpnsy"]
+[ext_resource type="Script" path="res://character_body_3d.gd" id="5_qr3qs"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_61218"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_aw6p0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5nwy"]
+albedo_color = Color(0.958, 0.16, 1, 1)
+metallic = 0.24
+metallic_specular = 0.45
+roughness = 0.0
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_l3v5t"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p8n03"]
+albedo_color = Color(0.6084, 0.74568, 0.78, 1)
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_5ww7e")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.710885, 0.703308, 0, -0.703308, 0.710885, 0, 13.4545, 23.6539)
+script = ExtResource("3_fpnsy")
+
+[node name="Miner" type="RigidBody3D" parent="."]
+mass = 0.001
+gravity_scale = 0.0
+script = ExtResource("5_qr3qs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Miner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02656, 0)
+shape = SubResource("CapsuleShape3D_61218")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Miner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.990064, 0)
+mesh = SubResource("CapsuleMesh_aw6p0")
+surface_material_override/0 = SubResource("StandardMaterial3D_p5nwy")
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = ExtResource("1_kumd7")
+cell_size = Vector3(1, 1, 1)
+bake_navigation = true
+script = ExtResource("2_gqqed")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00930119, 0.016269, -0.00613666)
+mesh = SubResource("PlaneMesh_l3v5t")
+surface_material_override/0 = SubResource("StandardMaterial3D_p8n03")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.963584, -0.011403, 0.267163, -0.223626, -0.582172, 0.781708, 0.146621, -0.812986, -0.563521, 13.0197, 18.6645, -14.1583)
+light_energy = 0.1
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1151.0
+offset_bottom = 649.0
+text = "(0,0,0)"
+horizontal_alignment = 2
+
+[connection signal="move_to" from="." to="Miner" method="_on_node_3d_move_to"]
