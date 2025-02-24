@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://ct61o5vuxnfok"]
 
-[ext_resource type="Script" path="res://node_3d.gd" id="1_5ww7e"]
-[ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://mesh.tres" id="1_kumd7"]
-[ext_resource type="Script" path="res://grid_map.gd" id="2_gqqed"]
-[ext_resource type="Script" path="res://camera_3d.gd" id="3_fpnsy"]
-[ext_resource type="Script" path="res://character_body_3d.gd" id="5_qr3qs"]
+[ext_resource type="Script" path="res://scenes/main/node_3d.gd" id="1_84c6w"]
+[ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://prefabs/map_generator/mesh.tres" id="1_kumd7"]
+[ext_resource type="Script" path="res://prefabs/camera/camera_3d.gd" id="2_wamhu"]
+[ext_resource type="Script" path="res://prefabs/player/player.gd" id="3_ef2od"]
+[ext_resource type="Script" path="res://prefabs/map_generator/grid_map.gd" id="5_uadi5"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_61218"]
 
@@ -22,16 +22,16 @@ roughness = 0.0
 albedo_color = Color(0.6084, 0.74568, 0.78, 1)
 
 [node name="Node3D" type="Node3D"]
-script = ExtResource("1_5ww7e")
+script = ExtResource("1_84c6w")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.710885, 0.703308, 0, -0.703308, 0.710885, 0, 13.4545, 23.6539)
-script = ExtResource("3_fpnsy")
+script = ExtResource("2_wamhu")
 
 [node name="Miner" type="RigidBody3D" parent="."]
 mass = 0.001
 gravity_scale = 0.0
-script = ExtResource("5_qr3qs")
+script = ExtResource("3_ef2od")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Miner"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02656, 0)
@@ -46,10 +46,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_p5nwy")
 mesh_library = ExtResource("1_kumd7")
 cell_size = Vector3(1, 1, 1)
 bake_navigation = true
-script = ExtResource("2_gqqed")
+script = ExtResource("5_uadi5")
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00930119, 0.016269, -0.00613666)
 mesh = SubResource("PlaneMesh_l3v5t")
 surface_material_override/0 = SubResource("StandardMaterial3D_p8n03")

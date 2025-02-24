@@ -2,9 +2,13 @@ extends GridMap
 
 var middle_threshold
 var grid_size
-var astar:AStar3D
+var navigation_map
 
 func _ready() -> void:
+	bake_map()
+	navigation_map = get_navigation_map()
+	
+func bake_map() -> void:
 	grid_size = get_parent_node_3d().grid_size
 	middle_threshold = get_parent_node_3d().middle_threshold
 	var border_wall_thickness = grid_size

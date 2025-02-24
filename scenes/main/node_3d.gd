@@ -7,20 +7,20 @@ var camera: Camera3D
 var movement_position: Vector3
 
 func spawn_at(vector3d: Vector3):
-	var scene = load("res://ping.tscn")
+	var scene = load("res://prefabs/ping/ping.tscn")
 	var scene_instance = scene.instantiate()
+	add_child(scene_instance)
 	scene_instance.set_name("movement_spot")
 	scene_instance.global_position = vector3d
-	add_child(scene_instance)
 
 func _ready() -> void:
 	camera = $Camera3D
 	var midpoint = grid_size / 2
 	var midpoint_position = Vector3(midpoint, 0, midpoint)
 	camera.position = Vector3(midpoint, camera.position.y, midpoint + 15)
-	$MeshInstance3D.position = midpoint_position
+	$Floor.position = midpoint_position
 	$Miner.position = midpoint_position
-	$MeshInstance3D.scale = Vector3(midpoint, 1, midpoint)
+	$Floor.scale = Vector3(midpoint, 1, midpoint)
 
 func _process(_delta: float) -> void:
 	var camera_position = camera.position
@@ -42,5 +42,5 @@ func _input(event):
 
 		if position3D:
 			movement_position = position3D
-			emit_signal("move_to")
+			emit_signal("move_to", movement_position)
 			spawn_at(position3D)
