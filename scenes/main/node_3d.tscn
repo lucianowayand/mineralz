@@ -1,20 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct61o5vuxnfok"]
+[gd_scene load_steps=8 format=3 uid="uid://ct61o5vuxnfok"]
 
 [ext_resource type="Script" path="res://scenes/main/node_3d.gd" id="1_84c6w"]
 [ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://prefabs/map_generator/mesh.tres" id="1_kumd7"]
-[ext_resource type="Script" path="res://prefabs/camera/camera_3d.gd" id="2_wamhu"]
-[ext_resource type="Script" path="res://prefabs/player/player.gd" id="3_ef2od"]
+[ext_resource type="PackedScene" uid="uid://c8rtkupbhncwa" path="res://prefabs/camera/camera_3d.tscn" id="2_0hqs5"]
+[ext_resource type="PackedScene" uid="uid://cvfb2b0rtrajf" path="res://prefabs/player/miner.tscn" id="3_ano2j"]
 [ext_resource type="Script" path="res://prefabs/map_generator/grid_map.gd" id="5_uadi5"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_61218"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_aw6p0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p5nwy"]
-albedo_color = Color(0.958, 0.16, 1, 1)
-metallic = 0.24
-metallic_specular = 0.45
-roughness = 0.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_l3v5t"]
 
@@ -24,23 +14,9 @@ albedo_color = Color(0.6084, 0.74568, 0.78, 1)
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_84c6w")
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.710885, 0.703308, 0, -0.703308, 0.710885, 0, 13.4545, 23.6539)
-script = ExtResource("2_wamhu")
+[node name="Camera3D" parent="." instance=ExtResource("2_0hqs5")]
 
-[node name="Miner" type="RigidBody3D" parent="."]
-mass = 0.001
-gravity_scale = 0.0
-script = ExtResource("3_ef2od")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Miner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02656, 0)
-shape = SubResource("CapsuleShape3D_61218")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Miner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.990064, 0)
-mesh = SubResource("CapsuleMesh_aw6p0")
-surface_material_override/0 = SubResource("StandardMaterial3D_p5nwy")
+[node name="Miner" parent="." instance=ExtResource("3_ano2j")]
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("1_kumd7")

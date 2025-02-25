@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c8rtkupbhncwa"]
+
+[ext_resource type="Script" path="res://prefabs/camera/camera_3d.gd" id="1_61nm4"]
+
+[node name="Camera3D" type="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.710885, 0.703308, 0, -0.703308, 0.710885, 0, 13.4545, 23.6539)
+script = ExtResource("1_61nm4")

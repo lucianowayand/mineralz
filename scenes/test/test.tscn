@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ciegj1xpmdi0r"]
+
+[ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://prefabs/map_generator/mesh.tres" id="1_qylfv"]
+[ext_resource type="Script" path="res://scenes/test/test.gd" id="2_23g2f"]
+[ext_resource type="PackedScene" uid="uid://cvfb2b0rtrajf" path="res://prefabs/player/miner.tscn" id="3_wc48m"]
+[ext_resource type="PackedScene" uid="uid://c8rtkupbhncwa" path="res://prefabs/camera/camera_3d.tscn" id="4_m2lyk"]
+
+[node name="Node3D" type="GridMap"]
+mesh_library = ExtResource("1_qylfv")
+cell_size = Vector3(1, 1, 1)
+bake_navigation = true
+data = {
+"cells": PackedInt32Array(-1, 65535, 0, -65536, 65535, 196609, -65536, 0, 0, -1, 0, 196609, -2, 65535, 196609, -2, 65534, 0, -1, 65534, 196609, -65536, 65534, 0, -65535, 65534, 196609, -65535, 65535, 196608, -65535, 0, 1, -1, 1, 0, -2, 1, 196609, -2, 0, 0, -65535, 1, 0, -65536, 1, 1, -65535, 2, 196609, -1, 2, 196609, -65534, 1, 196609, -65534, 65535, 196609, -65533, 0, 196609, -65533, 2, 196609, -65534, 3, 196609, -2, 3, 196609, -2, 2, 196608, -1, 3, 196608, -65535, 3, 196608, -65534, 2, 196608, -65533, 1, 196608, -65534, 0, 196608, -65533, 65535, 196608, -65534, 65534, 196608, -65533, 3, 196608, -65533, 65534, 196609, -65536, 2, 196608, -65536, 3, 196609, 2, 3, 196614, 65535, 3, 196614, 0, 2, 196614, 2, 2, 196614, 65535, 2, 196614)
+}
+script = ExtResource("2_23g2f")
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Miner" parent="." instance=ExtResource("3_wc48m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12291, 0, 0.914371)
+
+[node name="Camera3D" parent="." instance=ExtResource("4_m2lyk")]
+transform = Transform3D(1, 0, 0, 0, 0.85862, 0.512613, 0, -0.512613, 0.85862, 0.974957, 5.22252, 6.84245)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.493714, 0.869624, 0, -0.869624, 0.493714, 0, 5.10972, 5.223)
+
+[connection signal="move_to" from="." to="Miner" method="_on_node_3d_move_to"]

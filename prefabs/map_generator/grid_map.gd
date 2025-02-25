@@ -6,7 +6,6 @@ var navigation_map
 
 func _ready() -> void:
 	bake_map()
-	navigation_map = get_navigation_map()
 	
 func bake_map() -> void:
 	grid_size = get_parent_node_3d().grid_size
