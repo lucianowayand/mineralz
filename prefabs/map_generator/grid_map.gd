@@ -1,15 +1,14 @@
 extends GridMap
 
-var middle_threshold
-var grid_size
-var navigation_map
+@onready var grid_size = get_parent_node_3d().get_parent_node_3d().grid_size
+@onready var middle_threshold = get_parent_node_3d().get_parent_node_3d().middle_threshold
+@export var crystal_rarity = 0.01
+@export var stone_rarity = 0.2
 
 func _ready() -> void:
 	bake_map()
 	
 func bake_map() -> void:
-	grid_size = get_parent_node_3d().grid_size
-	middle_threshold = get_parent_node_3d().middle_threshold
 	var border_wall_thickness = grid_size
 	var middle = grid_size / 2
 	
@@ -28,13 +27,13 @@ func bake_map() -> void:
 			var tile_index = (i + j) % 2
 			var chanceOfSpawning = randf_range(0,1)
 			
-			if(chanceOfSpawning <= 0.4):
+			if(chanceOfSpawning <= stone_rarity):
 				set_cell_item(Vector3(i, 0, j), tile_index)
 	
-	place_tiles_in_grid(0.01, 2)
-	place_tiles_in_grid(0.01, 3)
-	place_tiles_in_grid(0.01, 4)
-	place_tiles_in_grid(0.01, 5)
+	place_tiles_in_grid(crystal_rarity, 2)
+	place_tiles_in_grid(crystal_rarity, 3)
+	place_tiles_in_grid(crystal_rarity, 4)
+	place_tiles_in_grid(crystal_rarity, 5)
 	
 func place_tiles_in_grid(spawning_threshold: float, tile_index: int):
 	var middle = grid_size / 2

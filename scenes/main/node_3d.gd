@@ -1,8 +1,8 @@
 extends Node3D
 
 var grid: GridMap
-var grid_size = 250
-var middle_threshold = 5
+@export var grid_size = 250
+@export var middle_threshold = 5
 var camera: Camera3D
 var movement_position: Vector3
 
@@ -18,9 +18,9 @@ func _ready() -> void:
 	var midpoint = grid_size / 2
 	var midpoint_position = Vector3(midpoint, 0, midpoint)
 	camera.position = Vector3(midpoint, camera.position.y, midpoint + 15)
-	$Floor.position = midpoint_position
-	$Miner.position = midpoint_position
-	$Floor.scale = Vector3(midpoint, 1, midpoint)
+	$NavigationRegion3D/Miner.position = midpoint_position
+	$NavigationRegion3D/Floor.position = Vector3(midpoint, -0.5, midpoint)
+	$NavigationRegion3D/Floor.size = Vector3(grid_size, 1, grid_size)
 
 func _process(_delta: float) -> void:
 	var camera_position = camera.position
