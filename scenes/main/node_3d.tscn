@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://ct61o5vuxnfok"]
 
-[ext_resource type="Script" path="res://scenes/main/node_3d.gd" id="1_84c6w"]
+[ext_resource type="Script" uid="uid://duc7nac4xvw0y" path="res://scenes/main/node_3d.gd" id="1_84c6w"]
 [ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://prefabs/map_generator/mesh.tres" id="1_kumd7"]
 [ext_resource type="PackedScene" uid="uid://c8rtkupbhncwa" path="res://prefabs/camera/camera_3d.tscn" id="2_0hqs5"]
-[ext_resource type="Script" path="res://scenes/main/navigation_region_3d.gd" id="2_8n88j"]
+[ext_resource type="Script" uid="uid://d23vn34qgbrf6" path="res://scenes/main/navigation_region_3d.gd" id="2_8n88j"]
 [ext_resource type="PackedScene" uid="uid://cvfb2b0rtrajf" path="res://prefabs/player/miner.tscn" id="3_ano2j"]
-[ext_resource type="Script" path="res://prefabs/map_generator/grid_map.gd" id="5_uadi5"]
+[ext_resource type="Script" uid="uid://37b3pm61sxo3" path="res://prefabs/map_generator/grid_map.gd" id="5_uadi5"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_qlnbl"]
 vertices = PackedVector3Array(-9.75, 0.5, 0, -0.75, 0.5, 0, -0.75, 0.5, -0.5, 0, 0.5, -0.75, 0, 0.5, -9.75, -9.75, 0.5, -9.75, 0.5, 0.5, -0.75, 0.75, 0.5, 0, 9.75, 0.5, 0, 9.75, 0.5, -9.75, -0.25, 2, -0.25, -0.25, 2, 0.25, 0.25, 2, 0.25, 0.25, 2, -0.25, -0.75, 0.5, 0.5, 0, 0.5, 9.75, 0, 0.5, 0.75, -9.75, 0.5, 9.75, 0.5, 0.5, 0.75, 9.75, 0.5, 9.75)
@@ -46,7 +46,6 @@ text = "(0,0,0)"
 horizontal_alignment = 2
 
 [node name="Camera3D" parent="." instance=ExtResource("2_0hqs5")]
-transform = Transform3D(1, 0, 0, 0, 0.710885, 0.703308, 0, -0.703308, 0.710885, 0, 13.4545, 23.6539)
 
 [connection signal="move_to" from="." to="NavigationRegion3D/Miner" method="_on_node_3d_move_to"]
 [connection signal="bake_finished" from="NavigationRegion3D" to="NavigationRegion3D" method="_on_bake_finished"]

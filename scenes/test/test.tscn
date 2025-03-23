@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b8twsoi4w0ki5"]
 
-[ext_resource type="Script" path="res://scenes/test/navigation_npc.gd" id="1_3m1o0"]
-[ext_resource type="Script" path="res://scenes/test/navtest.gd" id="1_r38eg"]
+[ext_resource type="Script" uid="uid://bmrt610camcuw" path="res://scenes/test/navigation_npc.gd" id="1_3m1o0"]
+[ext_resource type="Script" uid="uid://ct436ji7tgvpu" path="res://scenes/test/navtest.gd" id="1_r38eg"]
 [ext_resource type="MeshLibrary" uid="uid://bruqodue6ocxy" path="res://prefabs/map_generator/mesh.tres" id="2_hpbel"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_ncwaq"]
